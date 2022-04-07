@@ -1,27 +1,19 @@
-// var App = () => (
-//   <div>
-//     <nav className="navbar">
-//       <div className="col-md-6 offset-md-3">
-//         <div><h5><em>search</em> view goes here</h5></div>
-//       </div>
-//     </nav>
-//     <div className="row">
-//       <div className="col-md-7">
-//         <div><h5><em>videoPlayer</em> view goes here</h5></div>
-//       </div>
-//       <div className="col-md-5">
-//         <div><h5><em>videoList</em> view goes here</h5></div>
-//       </div>
-//     </div>
-//   </div>
-// );
 import exampleVideoData from '../data/exampleVideoData.js';
 import VideoList from './VideoList.js';
+import VideoPlayer from './VideoPlayer.js';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      videoList: exampleVideoData,
+      currentVideo: exampleVideoData[0]
+    };
   }
+  onVideoTitleClick(videoItem) {
+    this.setState({currentVideo: videoItem});
+  }
+
   render() {
     return (
       <div>
@@ -32,10 +24,10 @@ class App extends React.Component {
         </nav>
         <div className="row">
           <div className="col-md-7">
-            <div><h5><em>videoPlayer</em> view goes here</h5></div>
+            <div><VideoPlayer video={this.state.currentVideo}/></div>
           </div>
           <div className="col-md-5">
-            <div><VideoList videos={exampleVideoData} /></div>
+            <div><VideoList videos={this.state.videoList} onClick={this.onVideoTitleClick.bind(this)}/></div>
           </div>
         </div>
       </div>
