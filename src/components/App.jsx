@@ -1,17 +1,22 @@
 import exampleVideoData from '../data/exampleVideoData.js';
 import VideoList from './VideoList.js';
 import VideoPlayer from './VideoPlayer.js';
+import searchYouTube from '../lib/searchYouTube.js';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      videoList: exampleVideoData,
+      videoList: [],
       currentVideo: exampleVideoData[0]
     };
   }
   onVideoTitleClick(videoItem) {
     this.setState({currentVideo: videoItem});
+  }
+
+  componentDidMount() {
+    searchYouTube('apple iphone 14', (data) => { this.setState({videoList: data}); });
   }
 
   render() {
