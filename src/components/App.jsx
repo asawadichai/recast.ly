@@ -11,19 +11,22 @@ class App extends React.Component {
     super(props);
     this.state = {
       videoList: [],
-      currentVideo: exampleVideoData[0]
+      currentVideo: {},
     };
-    this.debounceFunc = searchYouTube(e.target.value, (data) => { this.setState({videoList: data}); });
-    this.debounceSearch = _.debounce(() => debounceFunc(), 2000);
+    this.debounceSearch = _.debounce((e) => searchYouTube(e.target.value, (data) => { this.setState({videoList: data}); }), 2000);
   }
   onVideoTitleClick(videoItem) {
     this.setState({currentVideo: videoItem});
   }
 
+  debounceSearch(e) {
+    this.debounceSearch(e);
+  }
 
   onSearchInput(e) {
     console.log('typing');
-    this.debounceSearch();
+    e.persist();
+    this.debounceSearch(e);
   }
 
   componentDidMount() {
