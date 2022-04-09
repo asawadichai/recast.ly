@@ -1,3 +1,5 @@
+import VideoDetails from './VideoDetails.js';
+
 var VideoPlayer = (props) => {
   var content = '';
   var contentTitle = '';
@@ -14,12 +16,12 @@ var VideoPlayer = (props) => {
       </div>
       <div className="video-player-details">
         <h3>{contentTitle}</h3>
+        <div><VideoDetails likes={props.video} /></div>
         <div>{contentDescription}</div>
       </div>
     </div>
   );
 };
-// props.video.id ? props.video.id.videoId : props.list[0].id.videoId
 // PropTypes tell other developers what `props` a component expects
 // Warnings will be shown in the console when the defined rules are violated
 VideoPlayer.propTypes = {

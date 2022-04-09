@@ -4,8 +4,6 @@ import VideoPlayer from './VideoPlayer.js';
 import searchYouTube from '../lib/searchYouTube.js';
 import Search from './Search.js';
 
-//import debounce from 'lodash.debounce';
-
 class App extends React.Component {
   constructor(props) {
     super(props);
